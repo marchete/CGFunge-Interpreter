@@ -4,15 +4,11 @@ title : Java Maven Project
 plan:
   - title: Welcome # Set the page title (only displayed if your contribution has several pages)
     statement: markdowns/welcome.md # Set the file path to the page content
-#  - title: Another Page
-#    statement: markdowns/another-page.md
-
 
 # Settings for your programming projects and the associated Docker images
 projects:
   java:
     root: /java-project
-    #buildCommand: "chmod +x prebuild.sh && ./prebuild.sh"
     runner:
       name: techio/java-maven-runner
       version: 1.0.0

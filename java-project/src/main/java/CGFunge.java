@@ -2,7 +2,6 @@ import java.io.*;
 import java.nio.charset.*;
 import java.nio.file.*;
 import java.util.*;
-//import java.util.EmptyStackException;
 
 class Interpreter {
 	private final int[] dx = { 1, 0, -1, 0 };
@@ -81,18 +80,19 @@ class Interpreter {
 	public void printMarked() {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				System.out.print((marked[x][y] ? ANSI_GREEN_BACKGROUND : ANSI_BLACK_BACKGROUND) + grid[x][y]
-						+ ANSI_BLACK_BACKGROUND);
+				System.out.print((marked[x][y] ? ANSI_GREEN_BACKGROUND : ANSI_WHITE_BACKGROUND) + grid[x][y]
+						+ ANSI_WHITE_BACKGROUND);
 			}
 			System.out.println();
 		}
 	}
 
 	public void printCoverage() {
+	    System.out.println(ANSI_CYAN_BACKGROUND+"****************COVERAGE****************"+ANSI_WHITE_BACKGROUND);
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				System.out.print((coverage[x][y] ? ANSI_YELLOW_BACKGROUND : ANSI_BLACK_BACKGROUND) + grid[x][y]
-						+ ANSI_BLACK_BACKGROUND);
+				System.out.print((coverage[x][y] ? ANSI_YELLOW_BACKGROUND : ANSI_WHITE_BACKGROUND) + grid[x][y]
+						+ ANSI_WHITE_BACKGROUND);
 			}
 			System.out.println();
 		}
@@ -170,7 +170,7 @@ class Interpreter {
 		} else if (c == 'I') {
 			output += "'" + doPop() + "'";
 		} else if (c == 'C') {
-			output += (char) ((int) doPop());
+			output += (char) doPop();
 		} else if (c == '>')
 			dir = 0;
 		else if (c == 'v')
@@ -220,19 +220,23 @@ public class CGFunge {
 	static List<String> validators; // from validators.txt
 
 	public static void main(String[] args) {
+		int Wrong = 999;	    
 		try {
-			validators = Files.readAllLines(Paths.get("validators.txt"), StandardCharsets.UTF_8);
+		    String validatorsPath = "./src/main/java/validators.txt";
+		    String codePath = "./src/main/java/code.php"; 
+			validators = Files.readAllLines(Paths.get(validatorsPath), StandardCharsets.UTF_8);
 			ArrayList<Integer> failed = new ArrayList<Integer>();
-			int trackNumber = -1;//Integer.parseInt(validators.get(validators.size() - 1));
+			int trackNumber = -1;
 			if (args.length > 0)
 				trackNumber = Integer.parseInt(args[0]);
 			long lastChange = 0;
 
-			while (true) 
+			//while (true)   //Continuous monitoring, local use
+			for (int LOOPS =0; LOOPS<1;++LOOPS)
 			{
-				File file = new File("code.php");
+				File file = new File(codePath);
 				int Correct = 0;
-				int Wrong = 0;
+				Wrong = 0;
 				int TotalSteps = 0;
 				int LastWrong = 0;
 				int i = 1;
@@ -244,7 +248,7 @@ public class CGFunge {
 				lastChange = file.lastModified();
 				file = null;
 				try {
-					List<String> CODE = Files.readAllLines(Paths.get("code.php"), StandardCharsets.UTF_8);// charset.forName("ISO-8859-1")));
+					List<String> CODE = Files.readAllLines(Paths.get(codePath), StandardCharsets.UTF_8);// charset.forName("ISO-8859-1")));
 					for (String validator : validators) {
 						i = Integer.parseInt(validator);
 						String Solution = (isPrime(i) ? "" : "NOT ") + "PRIME";
@@ -282,11 +286,14 @@ public class CGFunge {
 							failed.add(i);
 						}
 						if (i == trackNumber) {
-							System.out.println("OUTPUT: " + interpreter.getOutput() + " Steps:" + steps);
+							System.out.println("***Validator:"+i+" Steps:" + steps+" ********* OUTPUT: " + interpreter.getOutput());
 							interpreter.printMarked();
 						}
 						if (validator == validators.get(validators.size() - 1))
+						{
+						    System.out.println("");
 							interpreter.printCoverage();
+						}
 					}
 				} catch (EmptyStackException St) {
 					failed.add(i);
@@ -300,21 +307,23 @@ public class CGFunge {
 				}
 
 				System.out.println("===> Correct:" + Correct + " Wrong:" + Wrong
-						+ (Wrong > 0 ? " Last Wrong: " + LastWrong : "") + " Total Steps:" + TotalSteps);
-				System.out.print("Errors: ");
+						+ (Wrong > 0 ? " Last Incorrect Validator: " + LastWrong : "") + " Total Steps:" + TotalSteps);
+				System.out.print("Validator Errors: ");
 				for (int f : failed) {
 					System.out.print(f + ",");
 				}
 				System.out.println();
-				if (Wrong == 0)
-					     System.out.println("TECHIO> success true");
-					else System.out.println("TECHIO> success false");
+
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+			++Wrong;
 		}catch (InterruptedException e) {
 			e.printStackTrace();
+			++Wrong;
 		}
-
+		if (Wrong == 0)
+			     System.out.println("TECHIO> success true");
+			else System.out.println("TECHIO> success false");
 	}
 }
