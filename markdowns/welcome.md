@@ -9,6 +9,7 @@ I worked on this puzzle in the following way:
 * I created an Excel template that is where I code the solution. That excel template has conditional formatting and helps you with empty spaces. If you forget an empty space it shows a red cell. Excel is also better for move instructions, transpose it, etc. Once I want to test the code I passed it to a plain text file called code.php
 * I have a file called validators.txt with all numbers I want to test. You can use the numbers you like.
 * Then I run the interpreter, and I got the valid tests, invalid tests and a coverage of the items. Coverage is useful to know how many times you run an instruction for the validators.
+*Once I have a correct solution, I remove tabs from code.php, add the number of line as the first line (it's needed on the original puzzle), and I submit it.
 
 # Interpreter
 
