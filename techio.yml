@@ -9,11 +9,11 @@ plan:
 
 
 # Settings for your programming projects and the associated Docker images
-#projects:
-  #java:
-    #root: /java-project # Set the root path to your Java project
+projects:
+  java:
+    root: /java-project # Set the root path to your Java project
 
     # Set the docker image. This image runs JUnit tests using this syntax:
     # @[Code Editor Title]({"stubs": ["EditorFile1.java", "EditorFile2.java", ...], "command": "MyJUnitClass#myMethod"})
     # More details here: https://github.com/TechDotIO/java-maven3-junit4-runner
-    #runner: techio/java-compiler
+    runner: techio/java-compiler
