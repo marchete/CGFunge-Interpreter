@@ -1,6 +1,6 @@
 # CG-Funge Batch Runner
 
-This Java playground can help you to make faster tests on CG-Funge optimization puzzle [](https://www.codingame.com/ide/puzzle/cgfunge-prime) 
+This Java playground can help you to make faster tests on [CGFunge Primer puzzle](https://www.codingame.com/ide/puzzle/cgfunge-prime) 
 It works by using the same code to a list of validators, giving you the number of valid tests, invalid ones, code coverage and a highlight of the first invalid execution.
 It's easier to track down problems for me, as you can see with a color what part of the code was executed. If you copy it locally to your PC you can also pass a number parameter to see that execution path and not the first error.
 
