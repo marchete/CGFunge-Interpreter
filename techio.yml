@@ -1,9 +1,9 @@
-title : Java Maven Project
+title : CGFunge Batch Runner
 
 # Table of content
 plan:
-  - title: Welcome # Set the page title (only displayed if your contribution has several pages)
-    statement: markdowns/welcome.md # Set the file path to the page content
+  - title: CGFunge Batch Runner
+    statement: markdowns/welcome.md
 
 # Settings for your programming projects and the associated Docker images
 projects:

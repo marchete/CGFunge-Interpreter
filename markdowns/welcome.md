@@ -1,7 +1,9 @@
-# CG-Funge Batch Runner
+# CGFunge Batch Runner
 
 This Java playground can help you to make faster tests on [CGFunge Primer puzzle](https://www.codingame.com/ide/puzzle/cgfunge-prime) 
+
 It works by using the same code to a list of validators, giving you the number of valid tests, invalid ones, code coverage and a highlight of the first invalid execution.
+
 It's easier to track down problems for me, as you can see with a color what part of the code was executed. If you copy it locally to your PC you can also pass a number parameter to see that execution path and not the first error.
 
 It has some slight differences. First, you should not add the line count at start, my parser only takes a raw code. Besides that there is an additional instruccion 'Q', that ends the program but also prints the whole stack.
@@ -14,7 +16,7 @@ I worked on this puzzle in the following way:
 * Then I run the interpreter, and I got the valid tests, invalid tests, total steps and a code coverage.
 * Once I have a correct solution, I remove tabs from code.php, add the number of line as the first line (it's needed on the original puzzle), and I submit it.
 
-# Interpreter
+# Batch Interpreter
 
 @[CG Funge Interpreter]({"stubs": ["src/main/java/code.php","src/main/java/CGFunge.java","src/main/java/validators.txt"], "command": "CGFunge"})
 
