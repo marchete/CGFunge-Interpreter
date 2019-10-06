@@ -1,2 +1,3 @@
 #!/bin/bash
-cp * /project/target
+cp validators.txt /project/target
+cp code.php /project/target
