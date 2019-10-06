@@ -12,6 +12,7 @@ plan:
 projects:
   java:
     root: /java-project
+    buildCommand: "cp -p * /project/target"
     runner:
       name: techio/java-maven-runner
       version: 1.0.0
