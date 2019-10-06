@@ -12,5 +12,5 @@ I worked on this puzzle in the following way:
 
 # Interpreter
 
-@[CG Funge Interpreter]({"stubs": ["src/code.php","src/main/java/CGFunge.java","src/validators.txt"], "command": "CGFunge"})
+@[CG Funge Interpreter]({"stubs": ["src/main/java/code.php","src/main/java/CGFunge.java","src/main/java/validators.txt"], "command": "CGFunge"})
 

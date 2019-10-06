@@ -12,7 +12,7 @@ plan:
 projects:
   java:
     root: /java-project
-    #buildCommand: "chmod +x prebuild.sh && ./prebuild.sh"
+    buildCommand: "chmod +x prebuild.sh && ./prebuild.sh"
     runner:
       name: techio/java-maven-runner
       version: 1.0.0
